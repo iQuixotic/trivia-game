@@ -4,18 +4,23 @@ var incorrectCount = 0;
 var correctAnswer;
 var j;
 var btn1 = document.getElementById('bt1');
+
 var btn2 = document.getElementById('bt2');
+
 var btn3 = document.getElementById('bt3');
+
 var btn4 = document.getElementById('bt4');
 
+// an array of question objects ready to be passed to newOrderArr
 var newOrderArr = [];
 var questionArr = [
-///---------------------------------------------------------------
+//---------------------------------------------------------------
    {
+       //numbers assigned to each for easy visability
        number:1,
         q: "A cat can jump up to ______ times its length.",
         choices: ['6', '7', '9', '10'], 
-        correct: "good"
+        correct: '6'
     }, {
         number:2,
         q: "Cats sleep how many hours a day on average?",
@@ -63,59 +68,42 @@ var questionArr = [
         correct: 'death'
     }
 ];
-
+// puts the questions in a random order for the first time
 questionRandomizer();
+// makes the timer start for the first time
+runTimer();
 
-
-//======================================================================
-//main loop (maybe in a start game function)
-for (i = 0; i < newOrderArr.length; i++) {
-   // countdown();
-    if (newOrderArr[i].choices === newOrderArr[i].correct) {
-        correctCount++;             //increment count of correct
-        changeQ();
-    } else { incorrectCount++ }     //increment count of incorrect
-    changeQ();                      //running changeQ after a wrong guess
-}
-//======================================================================
-//Part of the timer to display 20 seconds on the screen, make them decrement
-//once each second, 
-
-var timeLeft = 20
-var timeOnScreen = document.getElementById('timer');
-var timer;
-
-// function that loops through the questions and prints them onto the jumbotron
-// part 2 of this function assigns the buttons to possible choices for that question
 var str, htmla1, htmla2, htmla3, htmla4;
-function changeQ() {
-    runTimer();
-    for (i = 0; i < newOrderArr.length; i++) {
-        var htmlq = `<p>${newOrderArr[i].q}</p>`
-        document.getElementById("changing-question").innerHTML = htmlq;
-        //this part of the functions changes each of the answer's inner text 
-        // and values
-        htmla1 = `<p>${newOrderArr[i].choices[0]}</p>`
-        document.getElementById("bt1").innerHTML = htmla1;
-        btn1 = newOrderArr[i].choices[0];
-       //-------------------------------------------
-        btn2 = newOrderArr[i].choices[1];
-        htmla2 = `<p>${newOrderArr[i].choices[1]}</p>`
-        document.getElementById("bt2").innerHTML = htmla2;
-        //---------------------------------------
-        btn3 = newOrderArr[i].choices[2];
-        htmla3 = `<p>${newOrderArr[i].choices[2]}</p>`
-        document.getElementById("bt3").innerHTML = htmla3;
-        //------------------------------------------
-        btn4 = newOrderArr[i].choices[3];
-        htmla4 = `<p>${newOrderArr[i].choices[3]}</p>`
-        document.getElementById("bt4").innerHTML = htmla4;
-    }
+
+// for loop to pass by each question
+function changeArr(){
+    questionArr.push(newOrderArr[0]);
+    newOrderArr.splice(0, 1);
+    changeQ();
 }
-
-// make a function that assigns a timer to each question and displays it 
-
-// make function to randomize question order
+//function for changing questions (logic only) (will run inside another function)
+function changeQ() {
+    var htmlq = `<p>${newOrderArr[0].q}</p>`
+    document.getElementById("changing-question").innerHTML = htmlq;
+    //this part of the functions changes each of the answer's inner text 
+    // and values
+    htmla1 = `<p>${newOrderArr[0].choices[0]}</p>`
+    document.getElementById("bt1").innerHTML = htmla1;
+    btn1 = newOrderArr[0].choices[0];
+    //-------------------------------------------
+    btn2 = newOrderArr[0].choices[1];
+    htmla2 = `<p>${newOrderArr[0].choices[1]}</p>`
+    document.getElementById("bt2").innerHTML = htmla2;
+    //---------------------------------------
+    btn3 = newOrderArr[0].choices[2];
+    htmla3 = `<p>${newOrderArr[0].choices[2]}</p>`
+    document.getElementById("bt3").innerHTML = htmla3;
+    //------------------------------------------
+    btn4 = newOrderArr[0].choices[3];
+    htmla4 = `<p>${newOrderArr[0].choices[3]}</p>`
+    document.getElementById("bt4").innerHTML = htmla4;
+}
+// function to randomize question order
 function questionRandomizer() {
     for (i = 0; i <10; i++) {
              j = Math.floor(Math.random() * questionArr.length);
@@ -126,6 +114,11 @@ function questionRandomizer() {
     }
 };
 //---------------- FUNCTIONS FOR TIMER ----------------------------
+//Part of the timer to display 20 seconds on the screen, make them decrement
+//once each second, 
+var timeLeft = 20;
+var timeOnScreen = document.getElementById('timer');
+var timer;
 //function that sets up the timer to run
 function runTimer(){
     timer = setInterval(countdown, 1000);
@@ -135,13 +128,64 @@ function countdown() {
    if(timeLeft !== 0){
     timeLeft--;
     timeOnScreen.innerHTML = timeLeft;
-    console.log(timeLeft);
    }if (timeLeft === 0) {
-   youLose();
-   changeQ();
+   timerReset();
+   changeArr();
     }
 }
 // resets the timer and alerts time is up
-function youLose() {
+function timerReset() {
     clearInterval(timer);
+    timeLeft = 20;
+    runTimer();
+}
+//------------- END OF TIMER FUNCTIONS -----------------------------
+//------------- BEGINNING OF BUTTON FUNCTIONS ----------------------
+// assigns button 1 to be index 0 of current answer choices array and 
+//compares it to the correct answer
+function button1Ass() {
+    btn1 = newOrderArr[0].choices[0];
+    if (btn1 === newOrderArr[0].correct) {
+        correctCount++;
+    } else { incorrectCount++ }
+    changeArr();
+    timerReset();
+    console.log(correctCount);
+    console.log(incorrectCount);
+}
+// assigns button 2 to be index 1 of current answer choices array and 
+//compares it to the correct answer
+function button2Ass() {
+    btn2 = newOrderArr[0].choices[1];
+    if (btn2 === newOrderArr[0].correct) {
+        correctCount++;
+    } else { incorrectCount++ }
+    changeArr();
+    timerReset();
+    console.log(correctCount);
+    console.log(incorrectCount);
+}
+// assigns button 3 to be index 2 of current answer choices array and 
+//compares it to the correct answer
+function button3Ass() {
+    btn3 = newOrderArr[0].choices[2];
+    if (btn3 === newOrderArr[0].correct) {
+        correctCount++;
+    } else { incorrectCount++ }
+    changeArr();
+    timerReset();
+    console.log(correctCount);
+    console.log(incorrectCount);
+}
+// assigns button 4 to be index 3 of current answer choices array and 
+//compares it to the correct answer
+function button4Ass() {
+    btn4 = newOrderArr[0].choices[3];
+    if (btn4 === newOrderArr[0].correct) {
+        correctCount++;
+    } else { incorrectCount++ }
+    changeArr();
+    timerReset();
+    console.log(correctCount);
+    console.log(incorrectCount);
 }
