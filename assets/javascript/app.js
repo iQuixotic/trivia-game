@@ -80,23 +80,16 @@ for (i = 0; i < newOrderArr.length; i++) {
 //======================================================================
 //Part of the timer to display 20 seconds on the screen, make them decrement
 //once each second, 
-//var timeLeft = `<p>${20}</p>`
+
+var timeLeft = 20
 var timeOnScreen = document.getElementById('timer');
-var timer = setInterval(countdown, 1000);
-document.getElementById('timer').innerHTML =  `<p>${20}</p>`;
-// function countdown() {
-//   if (timeLeft == 0) {
-//     clearTimeout(timeOnScreen);
-//    // youLose();
-//   } else {
-//     document.getElementById('timer').innerHTML =  `<p>${20}</p>`;
-//   //  timeLeft--;
-//   }
-// }
+var timer;
+
 // function that loops through the questions and prints them onto the jumbotron
 // part 2 of this function assigns the buttons to possible choices for that question
 var str, htmla1, htmla2, htmla3, htmla4;
 function changeQ() {
+    runTimer();
     for (i = 0; i < newOrderArr.length; i++) {
         var htmlq = `<p>${newOrderArr[i].q}</p>`
         document.getElementById("changing-question").innerHTML = htmlq;
@@ -105,7 +98,7 @@ function changeQ() {
         htmla1 = `<p>${newOrderArr[i].choices[0]}</p>`
         document.getElementById("bt1").innerHTML = htmla1;
         btn1 = newOrderArr[i].choices[0];
-       //------------------------------ 
+       //-------------------------------------------
         btn2 = newOrderArr[i].choices[1];
         htmla2 = `<p>${newOrderArr[i].choices[1]}</p>`
         document.getElementById("bt2").innerHTML = htmla2;
@@ -119,7 +112,7 @@ function changeQ() {
         document.getElementById("bt4").innerHTML = htmla4;
     }
 }
-changeQ();
+
 // make a function that assigns a timer to each question and displays it 
 
 // make function to randomize question order
@@ -132,104 +125,23 @@ function questionRandomizer() {
              questionArr.splice([j], 1);
     }
 };
-
-function youLose() {
-    console.log("you ran out of time")
+//---------------- FUNCTIONS FOR TIMER ----------------------------
+//function that sets up the timer to run
+function runTimer(){
+    timer = setInterval(countdown, 1000);
 }
-// var node = document.getElementsByClassName("myList2").lastChild;
-// document.getElementById("myList1").appendChild(node);
-
-//need to run this function every time an answer is selected to check for correctness
-// function switches() {
-//     switch (newOrderArr.number) {
-//         case 1:
-//         currentAnswerPer = "";
-//             if (currentAnswerPer == newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 2:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 3:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 4:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 5:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 6:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 7:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 8:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 9:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         case 10:
-//         currentAnswerPer = ""
-//             if (currentAnswerPer === newOrderArr.ChoiceC) { correctCount++; }
-//             else { incorrectCount++ }
-//             break;
-//         default:
-//             break;
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-
-// //functions
-// function answerCheck () {
-//     for(i=0; i<setAnswer.length; i++)
-//     if (a === setAnswer[i]);
-//     answers++;
-//     console.log("your correct answers number is" + answers)
-// };
-
-
-// // the question must be looped to the next when the time is 
-// //up or when an answer has been selected
-
-
-// //METHODS
-
-// //function winCheck() must keep track of wins and losses
-
-// //function rightWrong() must keep track of rights or wrongs
-
-// //function loopTime() must display a clock for each question
-// // and keep track of the time
-
-
-
-// var currentQuestion = 0;
-// var score 
+//function that counts down until timer equals 0
+function countdown() {
+   if(timeLeft !== 0){
+    timeLeft--;
+    timeOnScreen.innerHTML = timeLeft;
+    console.log(timeLeft);
+   }if (timeLeft === 0) {
+   youLose();
+   changeQ();
+    }
+}
+// resets the timer and alerts time is up
+function youLose() {
+    clearInterval(timer);
+}
