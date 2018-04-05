@@ -1,22 +1,18 @@
 
-var correctCount = 0;
-var incorrectCount = 0;
-var correctAnswer;
-var j;
+var correctCount = 0;   //count for correct responses
+var incorrectCount = 0; //count for wrong responses or out of times
+// var correctAnswer;
+var j; // variable used for random number generator
 var btn1 = document.getElementById('bt1');
-
 var btn2 = document.getElementById('bt2');
-
 var btn3 = document.getElementById('bt3');
-
 var btn4 = document.getElementById('bt4');
-
 // an array of question objects ready to be passed to newOrderArr
 var newOrderArr = [];
 var questionArr = [
 //---------------------------------------------------------------
    {
-       //numbers assigned to each for easy visability
+       //numbers assigned to each for easy visability (totally unnecessary in hindsight)
        number:1,
         q: "A cat can jump up to ______ times its length.",
         choices: ['6', '7', '9', '10'], 
@@ -33,7 +29,7 @@ var questionArr = [
         correct: '24'
     }, {
         number:4,
-        q: "On average, long do outdoor cats live?",
+        q: "On average, how many years do outdoor cats live?",
         choices: ['5 to 6', '3 to 5', '12 to 15', 'infinity'], 
         correct: '3 to 5'
     }, {
@@ -48,12 +44,12 @@ var questionArr = [
         correct: 'kindle'
     }, {
         number:7,
-        q: "What is the term for when a cat rubs the side of its head against people or furniture?",
+        q: "What is the term for when a cat rubs the side of its head against people, animals, or furniture?",
         choices: ['kroger', 'tagging', 'beaning', 'bunting'], 
         correct: 'bunting'
     }, {
         number:8,
-        q: "Cats cannot perceive which of the following taste?",
+        q: "Cats cannot perceive which of the following tastes?",
         choices: ['sour', 'salty', 'sweet', 'icy-hot'], 
         correct: 'sweet'
     }, {
@@ -63,7 +59,7 @@ var questionArr = [
         correct: 'cats'
     }, {
         number:10,
-        q: "4000 years ago in egypt, what was the penalty for killing a cat?",
+        q: "4000 years ago in Egypt, what was the penalty for killing a cat?",
         choices: ['not death', 'death', 'not death', 'not death'], 
         correct: 'death'
     }
@@ -72,22 +68,17 @@ var questionArr = [
 questionRandomizer();
 // makes the timer be off until game is started
 clearInterval(timer);
-
 var str, htmla1, htmla2, htmla3, htmla4;
 var tracker=-1;
 // for loop to pass by each question
+//manipulates the array itself by dropping its current index[0] after 
+//choice is made or timer runs out
 function changeArr() {
-    // if(tracker >7){
-    //     clearInterval(timer);
-    //     timeOnScreen.innerHTML = timeLeft;
-    // }
-    if(newOrderArr[1]){
-    newOrderArr.shift();
-    changeQ();}
-    
-    console.log(newOrderArr.length)
+    if (newOrderArr[1]) {
+        newOrderArr.shift();
+        changeQ();
     }
-
+}
 //function for changing questions (logic only) (will run inside another function)
 function changeQ() {
     var htmlq = `<p>${newOrderArr[0].q}</p>`
@@ -96,17 +87,13 @@ function changeQ() {
     // and values
     htmla1 = `<p>${newOrderArr[0].choices[0]}</p>`
     document.getElementById("bt1").innerHTML = htmla1;
-   // btn1 = newOrderArr[0].choices[0];
     //-------------------------------------------
-    //btn2 = newOrderArr[0].choices[1];
     htmla2 = `<p>${newOrderArr[0].choices[1]}</p>`
     document.getElementById("bt2").innerHTML = htmla2;
     //---------------------------------------
-    // btn3 = newOrderArr[0].choices[2];
     htmla3 = `<p>${newOrderArr[0].choices[2]}</p>`
     document.getElementById("bt3").innerHTML = htmla3;
     //------------------------------------------
-    //btn4 = newOrderArr[0].choices[3];
     htmla4 = `<p>${newOrderArr[0].choices[3]}</p>`
     document.getElementById("bt4").innerHTML = htmla4;
 }
@@ -120,53 +107,6 @@ function questionRandomizer() {
         questionArr.splice([j], 1);
     }
 };
-//---------------- FUNCTIONS FOR TIMER ----------------------------
-//Part of the timer to display 20 seconds on the screen, make them decrement
-//once each second, 
-var timeLeft = 20;
-var timeOnScreen = document.getElementById('timer');
-var timer;
-var tracker2 = 0;
-//function that sets up the timer to run
-function runTimer() {
-    timer = setInterval(countdown, 1000);
-}
-//function that counts down until timer equals 0
-function countdown() {
-    if (timeLeft !== 0) {
-        timeLeft--;
-        timeOnScreen.innerHTML = timeLeft;
-    } if (timeLeft === 0) {
-        timerReset();
-        incorrectCount++;
-        check();
-        // changeArr();
-        //part of a series of odd workarounds to make all questions display
-        // I don't fully understand how this works
-        if(tracker2===0){
-            changeQ();
-        }if(tracker2!==0){changeArr();}
-        tracker2++;
-    }
-}
-// resets the timer and alerts time is up
-function timerReset() {
-    clearInterval(timer);
-    timeLeft = 20;
-    runTimer();
-}
-// starts the game in 3 seconds
-function start() {
-    clearInterval(timer);
-    timeLeft = 3;
-    timeOnScreen.innerHTML = timeLeft;
-    runTimer();
-}
-// reset game button
-function reset() {
-    location.reload();
-}
-//------------- END OF TIMER FUNCTIONS -----------------------------
 //------------- BEGINNING OF BUTTON FUNCTIONS ----------------------
 // assigns button 1 to be index 0 of current answer choices array and 
 //compares it to the correct answer
@@ -220,20 +160,69 @@ function button4Ass() {
     console.log(correctCount);
     console.log(incorrectCount);
 }
+//---------------------- END OF BUTTON FUNCTIONS ------------------------------
+//---------------- FUNCTIONS FOR TIMER ----------------------------
+//Part of the timer to display 20 seconds on the screen, make them decrement
+//once each second, 
+var timeLeft = 20;
+var timeOnScreen = document.getElementById('timer');
+var timer;
+var tracker2 = 0;
+//function that sets up the timer to run
+function runTimer() {
+    timer = setInterval(countdown, 1000);
+}
+//function that counts down until timer equals 0
+function countdown() {
+    if (timeLeft !== 0) {
+        timeLeft--;
+        timeOnScreen.innerHTML = timeLeft;
+    } if (timeLeft === 0) {
+        timerReset();
+        incorrectCount++;
+        check();
+        //part of a series of odd workarounds to make all questions display
+        // I don't fully understand how this works
+        if(tracker2===0){
+            changeQ();
+        }if(tracker2!==0){changeArr();}
+        tracker2++;
+    }
+}
+// resets the timer and alerts time is up
+function timerReset() {
+    clearInterval(timer);
+    timeLeft = 20;
+    runTimer();
+}
+// starts the game in 3 seconds
+function start() {
+    clearInterval(timer);
+    timeLeft = 3;
+    timeOnScreen.innerHTML = timeLeft;
+    runTimer();
+}
+// reset game button
+function reset() {
+    location.reload();
+}
+//------------- END OF TIMER FUNCTIONS -----------------------------
 // a function to check whether the game is over and to print the score
-function check(){
-    var totalCount = correctCount + incorrectCount; 
-    if(totalCount === 10){
+// at the end of the game
+function check() {
+    var totalCount = correctCount + incorrectCount;
+    if (totalCount === 10) {
         alert("The game is over")
-        var display;
-        display=document.getElementById("end-result");
-        display.innerHTML = ("You got " + correctCount + " answers right." + 
-        ('<br/>') +
-        "You got " + incorrectCount + " answers wrong.");
         clearInterval(timer);
         timeLeft = 0;
         timeOnScreen.innerHTML = timeLeft;
-        correctCount=0;
-        incorrectCount=0;
+        var display;
+        display = document.getElementById("end-result");
+        display.innerHTML = ("You got " + correctCount + " answers right." +
+        ('<br/>') +
+        "You got " + incorrectCount + " answers wrong.");
+         
+        correctCount = 0;
+        incorrectCount = 0;
     }
 }

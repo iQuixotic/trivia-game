@@ -3,59 +3,75 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Cat Coins</title>
+    <title>Trivia Challenge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="CSS/reset.css" /> <!-- Connected reset file -->
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="css/reset.css" /> Connected reset file -->
     <!--------------------------------------------------------------------------------------------------------------------- -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" /> <!-- Bootstrap 4 CDN !YOU NEED THIS ONE! --> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"/> <!-- Bootstrap 4 CDN with Javascript bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- link to jQuery library -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" /><!-- Connected USER css file -->
-   
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" /><!-- Connected USER css file -->
+
 </head>
+
 <body>
     <div class="container">
-    
-        <div id="upper-border" class="jumbotron">
+        <div id="upper-border" class="jumbotron ab-pos">
             <div class="row">
                 <div class="col-sm-10">
                     <div>
-                        <h1 id="topRow"class="display-4">The Ultimate Cat Quiz !!</h1>
-                        <p class="lead">Are you prepared?... No, No you are not</p>
+                        <h1 id="topRow" class="display-4">The Ultimate Cat Quiz !!</h1>
+                        
                         <hr class="my-4">
                     </div>
                 </div>
                 <div class="col-sm-2" id="timer"></div>
             </div>
-            
-                    <div class="row" id="end-result">
-                        <div class="col-sm-7" id='changing-question'>
-                            
+
+            <div class="row" id="end-result">
+                <div class="col-sm-7" id='changing-question'>
+                        <p id="topRowmini" class="lead">Are you prepared?... No, No you are not</p>
+                    <p>Hello and welcome to the Kitty Cat Quiz !!!</p>
+                    <br>
+                    <p>Test your knowledge and see just how much you don't know about cats !!</p>
 
 
-                    </div>
-                        <div class="col-sm-5" id='answers-build'>
-                            <p class="lead"> </p>
-                            <button id="bt1" class="col-sm-12" onclick="button1Ass()">Choice A</button>
-                             <br>
-                            <button id="bt2" class="col-sm-12" onclick="button2Ass()">Choice b</button>
-                            <br>
-                            <button id="bt3" class="col-sm-12" onclick="button3Ass()">Choice c</button>
-                           <br>
-                            <button id="bt4" class="col-sm-12" onclick="button4Ass()">Choice d</button>
-                        </div>
-                    </div>
-
-
-                            <button id="reset" onclick="reset()">Reset Game</button>
-                            <button id="restart" onclick="start()">Begin!!</button>
-                            <br>
-                            
-                    </div>
+                </div>
+                <div class="col-sm-5" id='answers-build'>
+                    <p class="lead"> </p>
+                    <button id="bt1" class="col-sm-12" onclick="button1Ass()">Choice A</button>
+                    
+                    <button id="bt2" class="col-sm-12" onclick="button2Ass()">Choice B</button>
+                    
+                    <button id="bt3" class="col-sm-12" onclick="button3Ass()">Choice C</button>
+                    
+                    <button id="bt4" class="col-sm-12" onclick="button4Ass()">Choice D</button>
                 </div>
             </div>
+
+
+            <button id="reset" onclick="reset()">Reset Game</button>
+            <button id="restart" onclick="start()">Begin!!</button>
+            <br>
         </div>
     </div>
-        <script src="assets/javascript/app.js"></script> <!-- Connected USER javascript file -->
+    
+
+
+
+
+    <div>
+
+        <div>
+            <img id='nerd1' class='z' src="assets/images/cat-nerd.gif"></div>
+        <div>
+            <img id='nerd2' class='z' src="assets/images/cat-nerd3.jpg"></div>
+        <div>
+            <img id='nerd3' class='z' src="assets/images/cat-nerd2.jpg"></div>
+    </div>
+
+    < <script src="assets/javascript/app.js"></script>
+        <!-- Connected USER javascript file -->
 </body>
+
 </html>
