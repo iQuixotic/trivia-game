@@ -137,8 +137,10 @@ function countdown() {
         timeLeft--;
         timeOnScreen.innerHTML = timeLeft;
     } if (timeLeft === 0) {
-        check();
         timerReset();
+        incorrectCount++;
+        check();
+        // changeArr();
         //part of a series of odd workarounds to make all questions display
         // I don't fully understand how this works
         if(tracker2===0){
@@ -153,6 +155,7 @@ function timerReset() {
     timeLeft = 20;
     runTimer();
 }
+// starts the game in 3 seconds
 function start() {
     clearInterval(timer);
     timeLeft = 3;

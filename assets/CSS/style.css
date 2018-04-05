@@ -9,15 +9,38 @@ body{
 #end-result {
     color: red;
     font-family: comic sans ms;
-
+}
+#changing-question {
+    color: brown;
+}
+#topRow {
+    color: orange;
+    font-size: 150%; 
 }
 #bt1, #bt3 {
-    font-size: .6em;
+    font-size: .8em;
     background-color: white;
     color: orange;
+    margin-right: 200px;
+    border: 2px solid orange;
 }
 #bt2, #bt4 {
-    font-size: .6em;
+    font-size: .5em;
     background-color: orange;
     color: white;
+    height: 60px;
+    min-width: 110%;
+    border: 2px solid white;
+}
+#reset, #restart {
+    font-size: .6em;
+    width: 49%;
+}
+#reset { 
+    color: white;
+    background: orange;
+}
+#restart { 
+    color: orange;
+    background: white;
 }

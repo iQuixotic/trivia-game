@@ -17,15 +17,17 @@
     <div class="container">
     
         <div id="upper-border" class="jumbotron">
-            <div class="row ">
-                <div class="col-md-9">
+            <div class="row">
+                <div class="col-sm-10">
                     <div>
-                        <h1 class="display-4">The Ultimate Cat Quiz !!</h1>
-                        <p class="lead">Are you prepared?</p>
+                        <h1 id="topRow"class="display-4">The Ultimate Cat Quiz !!</h1>
+                        <p class="lead">Are you prepared?... No, No you are not</p>
                         <hr class="my-4">
                     </div>
                 </div>
+                <div class="col-sm-2" id="timer"></div>
             </div>
+            
                     <div class="row" id="end-result">
                         <div class="col-sm-7" id='changing-question'>
                             
@@ -48,7 +50,7 @@
                             <button id="reset" onclick="reset()">Reset Game</button>
                             <button id="restart" onclick="start()">Begin!!</button>
                             <br>
-                            <div id="timer"></div>
+                            
                     </div>
                 </div>
             </div>
