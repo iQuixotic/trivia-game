@@ -77,10 +77,10 @@ var str, htmla1, htmla2, htmla3, htmla4;
 var tracker=-1;
 // for loop to pass by each question
 function changeArr() {
-    if(tracker >7){
-        clearInterval(timer);
-        timeOnScreen.innerHTML = timeLeft;
-    }
+    // if(tracker >7){
+    //     clearInterval(timer);
+    //     timeOnScreen.innerHTML = timeLeft;
+    // }
     if(newOrderArr[1]){
     newOrderArr.shift();
     changeQ();}
@@ -137,7 +137,10 @@ function countdown() {
         timeLeft--;
         timeOnScreen.innerHTML = timeLeft;
     } if (timeLeft === 0) {
+        check();
         timerReset();
+        //part of a series of odd workarounds to make all questions display
+        // I don't fully understand how this works
         if(tracker2===0){
             changeQ();
         }if(tracker2!==0){changeArr();}
@@ -169,6 +172,7 @@ function button1Ass() {
     if (btn1 === newOrderArr[0].correct) {
         correctCount++;
     } else { incorrectCount++ }
+    check();
     changeArr();
     timerReset();
     console.log(correctCount);
@@ -181,6 +185,7 @@ function button2Ass() {
     if (btn2 === newOrderArr[0].correct) {
         correctCount++;
     } else { incorrectCount++ }
+    check();
     changeArr();
     timerReset();
     console.log(correctCount);
@@ -193,6 +198,7 @@ function button3Ass() {
     if (btn3 === newOrderArr[0].correct) {
         correctCount++;
     } else { incorrectCount++ }
+    check();
     changeArr();
     timerReset();
     console.log(correctCount);
@@ -205,8 +211,26 @@ function button4Ass() {
     if (btn4 === newOrderArr[0].correct) {
         correctCount++;
     } else { incorrectCount++ }
+    check();
     changeArr();
     timerReset();
     console.log(correctCount);
     console.log(incorrectCount);
+}
+// a function to check whether the game is over and to print the score
+function check(){
+    var totalCount = correctCount + incorrectCount; 
+    if(totalCount === 10){
+        alert("The game is over")
+        var display;
+        display=document.getElementById("end-result");
+        display.innerHTML = ("You got " + correctCount + " answers right." + 
+        ('<br/>') +
+        "You got " + incorrectCount + " answers wrong.");
+        clearInterval(timer);
+        timeLeft = 0;
+        timeOnScreen.innerHTML = timeLeft;
+        correctCount=0;
+        incorrectCount=0;
+    }
 }
