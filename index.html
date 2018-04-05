@@ -19,27 +19,39 @@
         <div id="upper-border" class="jumbotron">
             <div class="row ">
                 <div class="col-md-9">
-                    <div id="changing-question">
-                        <h1 class="display-4">Ninja Cat Quiz!!</h1>
-                        <p class="lead">This is a simple Cat quiz.</p>
+                    <div>
+                        <h1 class="display-4">The Ultimate Cat Quiz !!</h1>
+                        <p class="lead">Are you prepared?</p>
                         <hr class="my-4">
-                    </div>
-                    <div id='answers-build'>
-                    <p>Good Luck !!</p>
-                    <p class="lead"> </p>
-                    <button id="bt1" onclick="button1Ass()">Choice A</button>
-    
-                    <button id="bt2" onclick="button2Ass()">Choice b</button>
-                    <br>
-                    <button id="bt3" onclick="button3Ass()">Choice c</button>
-    
-                    <button id="bt4" onclick="button4Ass()">Choice d</button>
-                    <br>
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Yay!!</a>
                     </div>
                 </div>
             </div>
-            <div id="timer"class="row">Time Left</div>
+                    <div class="row" id="end-result">
+                        <div class="col-sm-7" id='changing-question'>
+                            
+
+
+                    </div>
+                        <div class="col-sm-5" id='answers-build'>
+                            <p class="lead"> </p>
+                            <button id="bt1" class="col-sm-12" onclick="button1Ass()">Choice A</button>
+                             <br>
+                            <button id="bt2" class="col-sm-12" onclick="button2Ass()">Choice b</button>
+                            <br>
+                            <button id="bt3" class="col-sm-12" onclick="button3Ass()">Choice c</button>
+                           <br>
+                            <button id="bt4" class="col-sm-12" onclick="button4Ass()">Choice d</button>
+                        </div>
+                    </div>
+
+
+                            <button id="reset" onclick="reset()">Reset Game</button>
+                            <button id="restart" onclick="start()">Begin!!</button>
+                            <br>
+                            <div id="timer"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
         <script src="assets/javascript/app.js"></script> <!-- Connected USER javascript file -->
