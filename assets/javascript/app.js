@@ -70,7 +70,7 @@ questionRandomizer();
 clearInterval(timer);
 var str, htmla1, htmla2, htmla3, htmla4;
 var tracker=-1;
-// for loop to pass by each question
+// for loop to pass by each question once
 //manipulates the array itself by dropping its current index[0] after 
 //choice is made or timer runs out
 function changeArr() {
@@ -80,6 +80,8 @@ function changeArr() {
     }
 }
 //function for changing questions (logic only) (will run inside another function)
+//sets up newOrderArr[0] for each attribute of a particular object so that they 
+//always match up.
 function changeQ() {
     var htmlq = `<p>${newOrderArr[0].q}</p>`
     document.getElementById("changing-question").innerHTML = htmlq;
@@ -161,7 +163,7 @@ function button4Ass() {
     console.log(incorrectCount);
 }
 //---------------------- END OF BUTTON FUNCTIONS ------------------------------
-//---------------- FUNCTIONS FOR TIMER ----------------------------
+//---------------- FUNCTIONS FOR TIMER ----------------------------------------
 //Part of the timer to display 20 seconds on the screen, make them decrement
 //once each second, 
 var timeLeft = 20;

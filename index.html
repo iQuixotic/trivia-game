@@ -13,21 +13,21 @@
     <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" /><!-- Connected USER css file -->
 
 </head>
-
 <body>
     <div class="container">
+        <!-- put main content inside a jumbotron -->
         <div id="upper-border" class="jumbotron ab-pos">
+            <!-- first row in the jumbotron reserved for header -->
             <div class="row">
                 <div class="col-sm-10">
                     <div>
                         <h1 id="topRow" class="display-4">The Ultimate Cat Quiz !!</h1>
-                        
                         <hr class="my-4">
                     </div>
                 </div>
                 <div class="col-sm-2" id="timer"></div>
             </div>
-
+            <!-- A row where text will change and questions will appear on the left side by using javascript -->
             <div class="row" id="end-result">
                 <div class="col-sm-7" id='changing-question'>
                         <p id="topRowmini" class="lead">Are you prepared?... No, No you are not</p>
@@ -39,17 +39,15 @@
                 </div>
                 <div class="col-sm-5" id='answers-build'>
                     <p class="lead"> </p>
+                    <!-- Buttons for each of the four choices -->
                     <button id="bt1" class="col-sm-12" onclick="button1Ass()">Choice A</button>
-                    
                     <button id="bt2" class="col-sm-12" onclick="button2Ass()">Choice B</button>
-                    
                     <button id="bt3" class="col-sm-12" onclick="button3Ass()">Choice C</button>
-                    
                     <button id="bt4" class="col-sm-12" onclick="button4Ass()">Choice D</button>
                 </div>
             </div>
 
-
+            <!-- A reset button and a restart button at the bottom of the page -->
             <button id="reset" onclick="reset()">Reset Game</button>
             <button id="restart" onclick="start()">Begin!!</button>
             <br>
